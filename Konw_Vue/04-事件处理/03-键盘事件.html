@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>键盘事件</title>
+</head>
+<body>
+    <div id="root">
+         <input type="text" placeholder="按下回车显示输入" @keyup="showInfo" >  <!--placeholder属性表示在input框背景里显示文字,点击时消失 -->
+                  <!-- keyup:松开触发   ,  keydown:按下触发 -->
+    </div>                           
+</body>
+ <script type="text/javascript">
+   const vm=new Vue({
+      data(){
+      return{   
+         
+       }
+     },
+     methods:{
+         showInfo(event){
+             console.log(event.target.value)    //获取对象的内容值
+         }
+     },
+   })
+   vm.$mount('#root')
+</script>
+</html>
