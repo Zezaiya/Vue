@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第四章</title>
+                           <!-- 引入Vue,类似于引入了Vue实体类 -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id = "root">
+
+    <h1>你好,{{name}}</h1>
+           
+    </div>
+           
+                                              
+</body>
+<script type="text/javascript">
+  //el的第二种写法
+    const v=new Vue({    //先接收vue实例
+        //el:'#root'
+        data:{
+            name:'小泽仔'
+        }
+    })
+    
+    v.$mount('#root')  //再调用方法进行绑定(挂载)
+
+    //   这一种绑定方式较为灵活,比如我们可以让容器与该实例延迟绑定
+     
+
+
+    
+  //data的第二种写法(函数式)
+     new Vue({    //先接收vue实例
+        el:'#root',
+        data:function(){               //此处调用该函数的是Vue实例,而且必须是普通函数形式,不能是箭头函数    data:function()可简写成data()
+            return{                        //注意,如果用函数式,就必须返回对象
+                name:'小泽仔'              //函数式data推荐使用
+            }
+            
+        }
+    })
+ </script>
+</html>
+
+                    

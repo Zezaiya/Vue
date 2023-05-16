@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>事件</title>
+</head>
+
+<!-- 常见的事件修饰符
+     1.prevent:组织默认事件
+     2.stop:阻止事件冒泡
+     3.once:事件只触发一次 -->
+<body>
+    <div id="root">
+      <a href="http://www.baidu.com" @click.prevent="showInfo">阻止默认事件</a>   
+      <!-- 如果我们想触发该方法时不进行页面跳转,vue为我们提供了@click.prevent事件修饰符 -->
+
+
+      <div class="demo1" @click="showInfo"> 
+         <button @click.stop="showInfo">阻止事件冒泡</button>   <!--不加.stop会默认从内向外执行 -->
+    </div>
+
+
+    <button @click.once="showInfo">事件只触发一次</button>
+
+    <div class="box1" @click="showMsg(1)">
+      div1
+       <div class="box2" @click="showMsg(2)">  <!--当我们点击二时,vue会先从外向内捕获,捕获完成后再从内向外执行(冒泡),先执行的是里面这个div -->
+       div2
+      </div>
+
+    </div>
+
+   </div>                   
+   
+   
+</body>
+  
+ <script type="text/javascript">
+   const vm=new Vue({
+      data(){
+      return{   
+   
+       }
+     },
+     methods:{
+         showInfo(event){
+             alert("您即将进入baidu")
+         },
+         showMsg(number){
+             alert(number)
+         }
+     }
+   })
+   vm.$mount('#root')
+</script>
+   
+
+</html>

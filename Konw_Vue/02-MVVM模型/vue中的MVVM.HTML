@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一章</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">                    
+        <h1>学校:{{name}}</h1>             <!-- 这一块是View,也就是我们定义的模版,用于展示页面DOM -->
+        <h1>地址:{{address}}</h1>
+        <h1>查看Vue的其他属性:{{$emit}}</h1>    
+<!-- 我们在data里定义的数据最终都会存入Vue实例中,我们插值时{{}}里的东西不过是vue实例里的属性而已,然而vue还有很多属性,不仅仅局限于data里的,可以直接拿来用 -->
+    </div>
+   
+</body>
+
+<script type="text/javascript">
+ const vm=new Vue({                //这一块是ViewModel(VM),用于绑定model与view,所以我们一般将实例对象命名为VM
+    data(){
+    return{                       //
+        name:"湖北民族大学",       //  这一块就是 Model模型,用于存放数据
+        address:"湖北恩施"         //
+     }
+   }
+ })
+ vm.$mount('#root')
+ </script>
+
+</html>

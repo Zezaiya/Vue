@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第三章</title>
+                           <!-- 引入Vue,类似于引入了Vue实体类 -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id = "root">
+
+         单项数据绑定:<input type="text" :value="name">   </br>   <!--单项数据绑定只能将data里的数据传入页面,不可逆-->
+         双项数据绑定:<input type="text" v-model="name">           <!--简写,双向数据绑定可以实现页面与data进行交互-->
+
+             <!-- 注意:v-model只能用于表单类元素的属性上(输入类元素),而且一般作用于value属性,默认也是value -->
+    </div>
+           
+</body>                          
+                              
+                           <script type="text/javascript">
+                              new Vue({
+                                  el:"#root",
+                                  data:{
+                                      name:"小泽仔"
+                                  }
+                              })
+                                
+                               
+                           </script>
+
+</html>
+
+                    

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第二章</title>
+                           <!-- 引入Vue,类似于引入了Vue实体类 -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+            
+                           <div id="root">
+                               <h1>插值语法</h1>
+                               <h3>你好,{{name}}</h3>
+
+
+                               <hr/>
+
+
+                               <h1>指令语法</h1>
+                               <a v-bind:href="url"  v-bind:x="hello">点我1</a>    <!-- 用传统的绑定方式"{{url}}"也可以,但是阅读性不高,推荐加上v-bind:的方式,就不用双花括号了 -->
+                               <a :href="url" :x="hello">点我2</a>     <!--v-bind简写形式 -->
+                               
+
+
+                               <h1>指令进阶</h1>
+                                <h3>我现在{{age}}岁了</h3>           <!--1.当需要掉用同一性质的属性时 -->
+                               <hr/>
+                               <h3>你现在{{another.age}}岁了</h3>      <!--2.此时也调用了age -->
+                               <a v-bind:href="another.url">达咩啊</a>
+
+                           </div>
+ </body>                       
+
+                           <script type="text/javascript">
+                               new Vue({
+                                   el:'#root',  
+                                   data:{      
+                                       name:'臭弟弟',          
+                                       url:'http://www.baidu.com',
+                                       hello:"mother",                     //v-bind可以为标签里的任意属性进行绑定
+                                       age:20,
+                                       another:{
+                                          age:30,                             //3.我们可以将此属性放在自定义函数内,通过添加一个层级来阻止前者的调用
+                                          url:"http://www.jd.com"             //4.其实也就相当于不同文件夹
+                                       }
+                                   }
+                                
+                               });
+                           </script>
+
+</html>
+
+                     <!-- 注意:容器与Vue对象一定是一一对应的,多对一或者一对多永远只实现一个 -->
+
+
+
+                                         <!-- 插值语法:标签夹着的内容   用{{}}表示 -->
+                                         <!-- 指令语法:标签内部的属性   用v-bind等指令表示  -->
+                                         <!-- 不用v-bind会默认认为""里的是字符串而不是el表达式 -->

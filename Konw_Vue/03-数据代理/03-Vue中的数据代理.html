@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>数据代理</title>
+</head>
+<body>
+    <div id="root">
+        <h1>学校:{{name}}</h1>
+        <h1>地址:{{address}}</h1>
+    </div>
+</body>
+
+ <script type="text/javascript">
+   const vm=new Vue({          //1.通过 Object.defineProperty()把data对象中的每一个属性都添加到vm的_data对象中
+      data(){ 
+      return{                      
+         name:"湖北民族大学",   //2.为每一个添加到_data对象里的属性添加getter/setter方法
+         address:"湖北恩施"                           
+       }                  //3.当有人对vm的某个属性进行操作时,因为已经进行了绑定,所以修改了data属性时,_data的值也会通过getter/setter方法进行改变
+     }
+   })                      //因为vm的_data属性是已经人为定义好的(肯定有好处),我们要遵守这个规定,如果都在代码里写{{_data.xxx}},写代码会很繁琐
+                           //所以vue通过数据代理让我们减少了代码书写,我们就可以自定义属性名字
+   vm.$mount('#root')
+</script>
+</html>

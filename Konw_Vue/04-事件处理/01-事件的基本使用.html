@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>事件</title>
+</head>
+<body>
+    <div id="root">
+        <h1>快和{{name}}一起打csgo</h1>
+        <button v-on:click="showInfo">点我提示信息</button>    <!-- 添加事件,当该按钮被点击时,触发一个名为showInfo的函数 -->
+       <button @click="showInfo2(66,$event)">点我提示信息</button>      <!--简写, 传参数和java类似,但是传入参数会把默认的event参数覆盖 -->
+   </div>                            <!-- 解决方法:在实参上加$event -->
+</body>
+  <script type="text/javascript">
+
+   
+
+    const vm=new Vue({
+       data(){
+          return{name:"zezai"}
+     },
+     methods:{                                          //可以存很多方法
+         showInfo(event){                               //showInfo函数只能被定义在vue实例里,因为只有vue实例绑定了该模版,该范围才生效
+              alert("你好")
+              //console.log(event.target)  //自定义方法默认会接收一个事件对象,该对象就是被点击的对象,可以通过event.target获取
+          },
+
+
+          showInfo2(number,event){                      //showInfo函数只能被定义在vue实例里,因为只有vue实例绑定了该模版,该范围才生效
+              alert(number)
+              alert(event)
+          }
+      }
+    })
+    vm.$mount('#root')
+ </script>
+                                   <!-- 我们定义的方法Vue不需要数据代理,直接放在vm -->
+</html>

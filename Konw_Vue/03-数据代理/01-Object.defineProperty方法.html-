@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据代理</title>          
+</head>
+<body>
+     <script type="text/javascript">
+       let num=20
+       let person={
+           name: '泽仔',
+           sex: '男',
+       }
+                   //被操作的对象↓  新增↓    
+       Object.defineProperty(person,'age',{               //为属性添加属性和值,类似于java的aop,无侵入式思想
+           //value:18,        //←新增属性的值
+
+  // 新增属性的权限管理,默认都为false↓
+           //enumerable:true,
+           //writable:true,                 //控制该属性是否能被重写
+           // configurable:ture,            //控制该属性是否能被删除
+
+           get(){               //当person属性的age属性被调用时触发该方法,返回值即为age的值,不触发时就不会有值
+             return num                  //所以也就相当于将新属性与某个数据进行绑定
+           },
+                                                       //用此方法定义的属性默认无法被枚举(无法被遍历到),如果需要,则需要开启enumerable
+
+           set(value){
+             console.log("有人修改了值,我不说是谁")          //该方法必须传入参数
+             num=value;
+           }
+        })
+
+           console.log(person)              
+    </script>
+    
+</body>
+</html>
