@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例</title>
+</head>
+<body>
+    <div id="root">
+        姓: <input type="text"  v-model="firstName" ><br/>
+        名: <input type="text" v-model="secondName" ><br/>
+        姓名:<span>{{fullName()}}</span>     <!-- 此处如果fullName不加括号,显示的是整个函数对象,如果加括号显示的是函数的返回值 -->
+    </div>
+</body>
+ <script type="text/javascript">
+   const vm=new Vue({
+      data(){
+      return{   
+        firstName:"泽",
+        secondName:"仔"
+       }
+     },
+     methods:{
+        fullName(){
+          return  this.firstName+this.secondName     //this代表的是整个vue实例
+      }
+     }
+   })
+   vm.$mount('#root')
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>监视属性</title>
+</head>
+<body>
+    <div id="root">
+         <h1>今天天气很{{weather}}</h1>
+         <button @click="change">切换天气</button>    
+         <h2>a的值是{{numbers.a}}</h2>
+         <button @click="add">点我数字加一</button> 
+    </div>
+    
+</body>
+ <script type="text/javascript">
+const vm=new Vue({
+   data(){
+   return{   
+      isHot:true,
+      numbers:{
+          a:1,
+          b:2
+      }
+    }
+  },
+  methods:{
+      change(){
+          this.isHot=!this.isHot   
+      },
+       add(){
+           this.numbers.a++
+       }
+  },
+   computed:{
+     weather:{
+         get(){
+             return this.isHot? '炎热' : '凉爽'  
+         }
+     }
+   },
+   watch:{          
+       isHot:{
+           handler(newValue,oldValue){ 
+               console.log("isHot",newValue,oldValue) 
+           },
+       },
+
+       'numbers.a':{       //监视多级结构的属性的变化,问题:如果我想监视numbers里的所有属性呢,即有一个或者有几个变化了都能被检测到
+        handler(){ 
+               console.log("a被改变了") 
+           }
+         },
+        numbers:{
+             deep:true,           //解决方法:在numbers里面开启深度检测
+             handler(){ 
+               console.log("number里面有东西被改变了") 
+           }
+        },
+       weather:{
+        handler(newValue,oldValue){  
+               console.log("weather",newValue,oldValue) 
+       }
+   }
+}
+})
+vm.$mount('#root')
+
+
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例</title>
+</head>
+<body>
+    <div id="root">
+        姓: <input type="text" v-model="firstName" ><br/>
+        名: <input type="text" v-model="secondName" ><br/>
+        姓名:<span>{{firstName.slice(0,3)}}{{secondName}}</span>    <!--只截取0-3个索引 -->
+    </div>
+</body>
+ <script type="text/javascript">
+   const vm=new Vue({
+      data(){
+      return{   
+        firstName:"泽",
+        secondName:"仔"
+       }
+     },
+     methods:{
+       calculate(e){
+          alert(e.target.value)
+      }
+     }
+   })
+   vm.$mount('#root')
+</script>
+</html>

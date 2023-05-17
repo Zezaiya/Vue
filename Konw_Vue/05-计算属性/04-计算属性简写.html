@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例</title>
+</head>
+              <!--简写的前提:只考虑getter不考虑setter-->
+<body>
+    <div id="root">
+        姓: <input type="text"  v-model="firstName" ><br/>
+        名: <input type="text" v-model="secondName" ><br/>
+       姓名:<span>{{fullName}}</span><!-- 注意,此时的fullName虽然是函数,但是vue才不管这些,会直接将函数返回值封装到vm里,所以我们直接调值就行了 -->
+    </div>
+</body>
+ <script type="text/javascript">
+   const vm=new Vue({
+     el:'#root',
+      data:{
+        firstName:"泽",
+        secondName:"仔"
+     },
+     computed:{                         
+        fullName(){         //将fullName做成函数,此时这个函数就可以当成getter
+            return this.firstName + this.secondName
+        }
+     }
+   })
+        
+</script>
+</html>

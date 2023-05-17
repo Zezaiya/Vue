@@ -7,8 +7,14 @@
 </head>
 <body>
     <div id="root">
-         <input type="text" placeholder="按下回车显示输入" @keyup="showInfo" >  <!--placeholder属性表示在input框背景里显示文字,点击时消失 -->
-                  <!-- keyup:松开触发   ,  keydown:按下触发 -->
+         <input type="text" placeholder="按下回车显示输入" @keyup.enter="showInfo" >  <!--placeholder属性表示在input框背景里显示文字,点击时消失 -->
+                  <!-- keyup:松开触发   ,  keydown:按下触发    .enter表示按下回车再触发keyup-->
+         <input type="text" placeholder="tab键显示输入" @keydown.tab="showInfo" >  
+               <!-- tab键本身可以切换焦点,如果用keyup松开时已经失去了input框的焦点了所以无法输出,所以keydown为宜 -->
+         <input type="text" placeholder="ctrl键显示输入" @keydown.ctrl="showInfo" >
+                    
+
+              <!-- 总的来说,就是电脑自带的修饰按键比较特殊,推荐用keydown -->
     </div>                           
 </body>
  <script type="text/javascript">
@@ -20,7 +26,7 @@
      },
      methods:{
          showInfo(event){
-             console.log(event.target.value)    //获取对象的内容值
+             console.log(event.target.value,event.key,event.keyCode)    //获取对象的内容值
          }
      },
    })

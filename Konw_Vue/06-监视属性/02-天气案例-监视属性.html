@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>监视属性</title>
+</head>
+<body>
+    <div id="root">
+         <h1>今天天气很{{weather}}</h1>
+         <button @click="change">切换天气</button>    
+    </div>
+    
+</body>
+ <script type="text/javascript">
+const vm=new Vue({
+   data(){
+   return{   
+      isHot:true  
+    }
+  },
+  methods:{
+      change(){
+          this.isHot=!this.isHot   
+      }
+  },
+   computed:{
+     weather:{
+         get(){
+             return this.isHot? '炎热' : '凉爽'  
+         }
+     }
+   },
+   watch:{           //添加监视对象,里面添加上需要被监视的(计算)属性,可以实现对(计算)属性变化的状态监控
+       isHot:{
+           //immediate:true     初始化时先执行handler
+           handler(newValue,oldValue){  //当被监视的属性(isHot)被修改时该函数执行,该函数可传来两个参数,表示修改前/后的值
+               //当isHot属性值发生改变时,vue会自动调用该函数
+               console.log("isHot",newValue,oldValue) 
+           }
+       },
+
+       weather:{
+        handler(newValue,oldValue){  
+               console.log("weather",newValue,oldValue) 
+       }
+   }
+}
+})
+vm.$mount('#root')
+
+// vm.$watch('isHot',{            //同时我们也可以在vm实例外监视,第一个参数表示监视属性,用''包裹,第二个参数是对象,里面写handler函数
+//     handler(newValue,oldValue){ 
+//                console.log("isHot",newValue,oldValue) 
+//            }
+// })
+
+</script>
+</html>

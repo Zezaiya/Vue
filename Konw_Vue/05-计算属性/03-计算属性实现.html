@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>姓名案例</title>
+</head>
+              <!-- vue实例里的成员和方法叫属性 -->
+<body>
+    <div id="root">
+        姓: <input type="text"  v-model="firstName" ><br/>
+        名: <input type="text" v-model="secondName" ><br/>
+        姓名:<span>{{fullName}}</span>     <!-- fullName被调用,vue自动调用getter并把值放到vm实例里,所以可以直接用插值方式调用 -->
+        姓名:<span>{{fullName}}</span>     <!--当vue调用了get获取到了fullName后会将它的值放入缓存中,下一次调用时直接从缓存拿(效率更高) -->
+    </div>
+</body>
+ <script type="text/javascript">
+   const vm=new Vue({
+     el:'#root',
+      data:{
+        firstName:"泽",
+        secondName:"仔"
+     },
+     computed:{                         //以后我们将对于data里已有的属性得来的的计算属性定义在computed对象里
+        //当有人读取fullName时,get就会被调用,返回值即作为fullName的值(数据代理)
+        fullName:{
+            //get调用时机:1.初次被调用时 2.当所依赖的属性值发生变化时,即firstName或secondName
+          get(){
+              return this.firstName+this.secondName
+          },
+
+        //   set(value){
+        //      fullName=value   一般set用不上
+        //   }
+        }
+     }
+    
+   })
+            //    vue实例里的对象想使用data里的属性时,需要先获取vue实例(this)
+</script>
+</html>

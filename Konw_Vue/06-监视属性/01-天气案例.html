@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>监视属性</title>
+</head>
+<body>
+    <div id="root">
+         <h1>今天天气很{{weather}}</h1>
+         <button @click="change">切换天气</button>    
+         <!-- 如果方法较为简单,可以直接写在事件里  @click="isHot=!isHot",注意:此时作用域是vm,不需要this,不推荐 -->
+    </div>
+    
+</body>
+ <script type="text/javascript">
+const vm=new Vue({
+   data(){
+   return{   
+      isHot:true  
+    }
+  },
+  methods:{
+      change(){
+          this.isHot=!this.isHot   //修改boolen达到切换天气效果
+      }
+  },
+   computed:{
+     weather:{
+         get(){
+             return this.isHot? '炎热' : '凉爽'  //三目运算,判断isHot状态
+         }
+     }
+   }
+})
+vm.$mount('#root')
+
+
+//    const vm=new Vue({
+//       data(){
+//       return{   
+//       weather:"凉爽"
+//        }
+//      },
+//      methods:{
+//          change(){
+//              if(this.weather=="凉爽"){
+//                  this.weather="炎热"
+//                  console.log("天气变化了,现在是:炎热,原来是:凉爽")
+//              }
+//              else{
+//                  this.weather="凉爽"
+
+//                  console.log("天气变化了,现在是:凉爽,原来是:炎热")
+//              }
+//          }
+//      }
+//    })
+//    vm.$mount('#root')
+</script>
+</html>
